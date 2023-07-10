@@ -6,6 +6,7 @@ let buscarBoton = document.getElementById("buscarBoton");
 let carrrito = document.getElementById("carrrito");
 let padre = document.getElementById("padre");
 let serviciosPadre = document.getElementById("serviciosPadre");
+let borrar = document.getElementById("borrar");
 /* variables */
 let sumartotal = 0;
 let sumaSemi = 0;
@@ -183,18 +184,16 @@ let verServicios = document.getElementById("turnos");
 verServicios.addEventListener("click", () => {
   servicios(serviciosOfrecer);
 });
-
-/* AGREGAR OTRO DIV QUE PONGA ESO */
-/* <h1 class="title">Nuestro Catalogo</h1> */
+turnos.addEventListener("dblclick", () => {
+  borrar.innerHTML = ``;
+});
 
 function nuestroCatalogo(array) {
   padre.innerHTML = ``;
   for (let producto of array) {
     let productoNuevo = document.createElement("div");
     productoNuevo.className = "col-md-6 col-lg-3 m-5";
-    productoNuevo.innerHTML = `
-    
-    <div id="${producto.id}" class="card" style="width: 18rem">
+    productoNuevo.innerHTML = `<div id="${producto.id}" class="card" style="width: 18rem">
           <img src="img/${producto.imagen}" class="card-img-top" alt="..." />
           <div class="card-body">
             <h5 class="card-title">${producto.nombre}</h5>
@@ -209,9 +208,12 @@ function nuestroCatalogo(array) {
     padre.appendChild(productoNuevo);
   }
 }
-let verProductos = document.getElementById("productos");
-verProductos.addEventListener("click", () => {
+
+productos.addEventListener("click", () => {
   nuestroCatalogo(catalogoProductos);
+});
+productos.addEventListener("dblclick", () => {
+  borrar.innerHTML = ``;
 });
 
 /* SELECCIONAR SERVICIOS */
