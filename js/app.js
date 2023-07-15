@@ -7,6 +7,7 @@ let carrrito = document.getElementById("carrrito");
 let padre = document.getElementById("padre");
 let serviciosPadre = document.getElementById("serviciosPadre");
 let borrar = document.getElementById("borrar");
+let alCarrito = document.getElementById("alCarrito");
 /* variables */
 let sumartotal = 0;
 let sumaSemi = 0;
@@ -183,9 +184,11 @@ function servicios(array) {
 let verServicios = document.getElementById("turnos");
 verServicios.addEventListener("click", () => {
   servicios(serviciosOfrecer);
+  localStorage.setItem("mostrandoServicios", true);
 });
 turnos.addEventListener("dblclick", () => {
-  borrar.innerHTML = ``;
+  serviciosPadre.innerHTML = ``;
+  localStorage.setItem("mostrandoServicios", false);
 });
 
 function nuestroCatalogo(array) {
@@ -208,12 +211,18 @@ function nuestroCatalogo(array) {
     padre.appendChild(productoNuevo);
   }
 }
-
+/* Local Storage */
 productos.addEventListener("click", () => {
   nuestroCatalogo(catalogoProductos);
+  localStorage.setItem("mostrandoCatalogo", true);
 });
 productos.addEventListener("dblclick", () => {
-  borrar.innerHTML = ``;
+  padre.innerHTML = ``;
+  localStorage.getItem("mostrandoCatalogo", false);
+});
+
+alCarrito.addEventListener("click", () => {
+  console.log("agregado correctamente");
 });
 
 /* SELECCIONAR SERVICIOS */
@@ -290,18 +299,3 @@ function menu() {
 }
 
 //menu();
-
-/* Card de los esmaltes */
-/*  <div class="card" style="width: 18rem">
-   <img src="img/meline.jpg" class="card-img-top" alt="..." />
-   <div class="card-body">
-     <h5 class="card-title">Card title</h5>
-     <p class="card-text">
-       Some quick example text to build on the card title and make up the bulk
-       of the card's content.
-     </p>
-     <button id="alCarrito" class="btn btn-primary">
-       Go somewhere
-     </button>
-   </div>
- </div>; */
