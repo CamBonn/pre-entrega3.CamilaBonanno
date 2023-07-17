@@ -7,7 +7,7 @@ let carrrito = document.getElementById("carrrito");
 let padre = document.getElementById("padre");
 let serviciosPadre = document.getElementById("serviciosPadre");
 let borrar = document.getElementById("borrar");
-let alCarrito = document.getElementById("alCarrito");
+let verServicios = document.getElementById("turnos");
 /* variables */
 let sumartotal = 0;
 let sumaSemi = 0;
@@ -175,21 +175,13 @@ function servicios(array) {
               ${servicio.descripcion}, este servicio tiene una duracion de ${servicio.duracion}
             </p>
             <p class="title">$${servicio.precio}</p>
-            <button id="alCarrito" class="btn btn-success">Agregar al carrito</button>
+            <button class="btn btn-success">Agregar al carrito</button>
           </div>
         </div>`;
     serviciosPadre.appendChild(servicioNuevo);
   }
 }
-let verServicios = document.getElementById("turnos");
-verServicios.addEventListener("click", () => {
-  servicios(serviciosOfrecer);
-  localStorage.setItem("mostrandoServicios", true);
-});
-turnos.addEventListener("dblclick", () => {
-  serviciosPadre.innerHTML = ``;
-  localStorage.setItem("mostrandoServicios", false);
-});
+/* prueba carrito */
 
 function nuestroCatalogo(array) {
   padre.innerHTML = ``;
@@ -204,25 +196,30 @@ function nuestroCatalogo(array) {
               disponibilidad del producto ${producto.disponibilidad}
             </p>
             <p class="title">$${producto.precio}</p>
-            <button id="alCarrito" class="btn btn-success">Agregar al carrito</button>
+            <div id="hijo"></div>
+            <button class="btn btn-success">Agregar al carrito</button>
           </div>
         </div>
     `;
     padre.appendChild(productoNuevo);
   }
 }
-/* Local Storage */
+/* Local Storage y eventos*/
 productos.addEventListener("click", () => {
   nuestroCatalogo(catalogoProductos);
   localStorage.setItem("mostrandoCatalogo", true);
 });
 productos.addEventListener("dblclick", () => {
   padre.innerHTML = ``;
-  localStorage.getItem("mostrandoCatalogo", false);
+  localStorage.setItem("mostrandoCatalogo", false);
 });
-
-alCarrito.addEventListener("click", () => {
-  console.log("agregado correctamente");
+verServicios.addEventListener("click", () => {
+  servicios(serviciosOfrecer);
+  localStorage.setItem("mostrandoServicios", true);
+});
+turnos.addEventListener("dblclick", () => {
+  serviciosPadre.innerHTML = ``;
+  localStorage.setItem("mostrandoServicios", false);
 });
 
 /* SELECCIONAR SERVICIOS */
